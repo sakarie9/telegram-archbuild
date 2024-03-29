@@ -1,11 +1,12 @@
-## Telegram Builds with Patches for Arch Linux
-
-PKGBUILDS From [archlinuxcn](https://github.com/archlinuxcn/repo/tree/master/archlinuxcn/telegram-desktop-lily)
-Build with [arch repo builder](https://github.com/sakarie9/arch-repo-builder)
+# Telegram Builds with Patches for Arch Linux
 
 Patch lists can be found here: [patchs](pkgbuilds/telegram-desktop-sakari)
 
-### Usage
+Pkgbuilds from [archlinuxcn](https://github.com/archlinuxcn/repo/tree/master/archlinuxcn/telegram-desktop-lily)
+
+Build with [arch repo builder](https://github.com/sakarie9/arch-repo-builder)
+
+## Usage
 
 `pacman -U {Link from release}`
 
