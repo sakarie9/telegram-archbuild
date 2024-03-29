@@ -1,0 +1,7 @@
+global-settings:
+  repository: release/sakari-tg.db.tar.gz
+  packager: "Sakari <20642596+sakarie9@users.noreply.github.com>"
+
+pkgbuilds:
+  container: pkgbuilds
+

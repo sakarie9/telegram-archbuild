@@ -1,0 +1,54 @@
+name: build packages
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Get current time
+        uses: josStorer/get-current-time@v2.0.2
+        id: current-time
+        with:
+          format: "YYYY-MM-DD HH:mm:ss"
+          utcOffset: "+08:00"
+
+      - name: Download releases
+        uses: robinraju/release-downloader@v1.9
+        continue-on-error: true
+        with:
+          tag: "repo"
+          fileName: "*"
+          out-file-path: "release"
+          tarBall: false
+          zipBall: false
+
+      - name: Build packages
+        uses: sakarie9/arch-repo-builder@main
+
+      - name: Delete old release assets
+        uses: mknejp/delete-release-assets@v1
+        with:
+          tag: repo
+          fail-if-no-release: false
+          fail-if-no-assets: false
+          assets: |
+            *.db
+            *.files
+            *.gz
+            *.zst
+
+      - name: Upload binaries to release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          file: release/*
+          tag: repo
+          overwrite: true
+          file_glob: true
+          #prerelease: true
+          #release_name: ${{ steps.current-time.outputs.formattedTime }}
+          release_name: repo
