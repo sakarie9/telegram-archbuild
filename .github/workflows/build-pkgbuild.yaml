@@ -1,6 +1,11 @@
 name: build packages
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'pkgbuilds'
   workflow_dispatch:
 
 jobs:
