@@ -16,10 +16,10 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Get current time
-        uses: josStorer/get-current-time@v2.0.2
-        id: current-time
+        uses: josStorer/get-current-time@v2
+        id: cache-date
         with:
-          format: "YYYY-MM-DD HH:mm:ss"
+          format: "YYYYMMDD"
           utcOffset: "+08:00"
 
       - name: Download releases
@@ -38,7 +38,9 @@ jobs:
         with:
           path: |
             ccache
-          key: ${{ runner.os }}-ccache
+          key: ccache-${{ steps.cache-date.outputs.formattedTime }}
+          restore-keys: |
+            ccache-
 
       - name: Build packages
         uses: sakarie9/arch-repo-builder@main
@@ -49,7 +51,7 @@ jobs:
         with:
           path: |
             ccache
-          key: ${{ steps.cache-ccache-restore.outputs.cache-primary-key }}
+          key: ccache-${{ steps.cache-date.outputs.formattedTime }}
 
       - name: Delete old release assets
         uses: mknejp/delete-release-assets@v1
