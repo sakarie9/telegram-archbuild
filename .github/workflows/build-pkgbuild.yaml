@@ -38,6 +38,7 @@ jobs:
         with:
           path: |
             ccache
+            pkgbuilds/telegram-desktop-sakari/src/build
           key: ccache-${{ steps.cache-date.outputs.formattedTime }}
           restore-keys: |
             ccache-
@@ -51,6 +52,7 @@ jobs:
         with:
           path: |
             ccache
+            pkgbuilds/telegram-desktop-sakari/src/build
           key: ccache-${{ steps.cache-date.outputs.formattedTime }}
 
       - name: Delete old release assets
