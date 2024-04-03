@@ -22,6 +22,10 @@ jobs:
           format: "YYYYMMDD"
           utcOffset: "+08:00"
 
+      - name: Extract Telegram Version
+        id: tg-version
+        run: echo "pkgver=$(grep -Po 'pkgver=\K[^ ]+' pkgbuilds/telegram-desktop-sakari/PKGBUILD)" >> "$GITHUB_OUTPUT"
+
       - name: Download releases
         uses: robinraju/release-downloader@v1.9
         continue-on-error: true
@@ -34,26 +38,17 @@ jobs:
 
       - name: Restore ccache
         id: cache-ccache-restore
-        uses: actions/cache/restore@v4
+        uses: actions/cache@v4
         with:
           path: |
             ccache
             pkgbuilds/telegram-desktop-sakari/src/build
-          key: ccache-${{ steps.cache-date.outputs.formattedTime }}
+          key: ccache-v${{ steps.tg-version.outputs.pkgver }}
           restore-keys: |
-            ccache-
+            ccache-v
 
       - name: Build packages
         uses: sakarie9/arch-repo-builder@main
-
-      - name: Save ccache
-        id: cache-primes-save
-        uses: actions/cache/save@v4
-        with:
-          path: |
-            ccache
-            pkgbuilds/telegram-desktop-sakari/src/build
-          key: ccache-${{ steps.cache-date.outputs.formattedTime }}
 
       - name: Delete old release assets
         uses: mknejp/delete-release-assets@v1
