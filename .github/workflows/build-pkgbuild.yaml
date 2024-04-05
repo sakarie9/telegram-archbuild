@@ -44,8 +44,6 @@ jobs:
             ccache
             pkgbuilds/telegram-desktop-sakari/src/build
           key: ccache-v${{ steps.tg-version.outputs.pkgver }}
-          restore-keys: |
-            ccache-v
 
       - name: Build packages
         uses: sakarie9/arch-repo-builder@main
