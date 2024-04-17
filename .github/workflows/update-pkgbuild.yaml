@@ -1,0 +1,27 @@
+name: update pkgbuild
+
+on:
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    outputs:
+      if_updated: ${{ steps.tg-update.outputs.if_updated }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Update PKGBUILD
+        id: tg-update
+        run: |
+          if_updated=`./pkgver-update.sh`
+          echo "if_updated=$if_updated" >> "$GITHUB_OUTPUT"
+
+  build:
+    uses: ./.github/workflows/build-pkgbuild.yaml
+    needs: update
+    if: needs.update.outputs.if_updated
+    secrets: inherit
+  
+
