@@ -23,7 +23,7 @@ jobs:
   build:
     uses: ./.github/workflows/build-pkgbuild.yaml
     needs: update
-    if: needs.update.outputs.if_updated
+    if: needs.update.outputs.if_updated == 1
     secrets: inherit
   
 
