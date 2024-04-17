@@ -17,6 +17,7 @@ jobs:
         run: |
           ./pkgver-update.sh
           if_updated=$(cat updated)
+          echo "if_updated=$if_updated"
           echo "if_updated=$if_updated" >> "$GITHUB_OUTPUT"
 
   build:
