@@ -21,8 +21,11 @@ then
     newsha=$(sha512sum tdesktop.tar.gz)
     sed -i "s/${oldsha}/${newsha}/" $PKGBUILD
 
+    echo "Updated!"
+
     # echo 1 if updated
-    echo 1
+    echo 1 >> updated
     exit 0
 fi
-echo 0
+echo "No Update!"
+echo 0 >> updated

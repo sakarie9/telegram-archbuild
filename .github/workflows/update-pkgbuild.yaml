@@ -15,7 +15,8 @@ jobs:
       - name: Update PKGBUILD
         id: tg-update
         run: |
-          if_updated=`./pkgver-update.sh`
+          ./pkgver-update.sh
+          if_updated=$(cat updated)
           echo "if_updated=$if_updated" >> "$GITHUB_OUTPUT"
 
   build:
