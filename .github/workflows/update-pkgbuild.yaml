@@ -29,7 +29,7 @@ jobs:
           git add -v pkgbuilds
           git config --global user.name Sakari
           git config --global user.email 20642596+sakarie9@users.noreply.github.com
-          git commit -m "Update ${{ github.ref_name }}"
+          git commit -m "Update to ${{ tg-update.outputs.newver }}"
           git push
 
   build:
