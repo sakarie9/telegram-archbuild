@@ -17,13 +17,23 @@ jobs:
         run: |
           ./pkgver-update.sh
           if_updated=$(cat updated)
+          newver=$(cat newver)
           echo "if_updated=$if_updated"
           echo "if_updated=$if_updated" >> "$GITHUB_OUTPUT"
+          echo "newver=$newver"
+          echo "newver=$newver" >> "$GITHUB_OUTPUT"
+
+      - name: Commit and Push Changes
+        if: tg-update.outputs.if_updated == 1
+        run: |
+          git add -v pkgbuilds
+          git config --global user.name Sakari
+          git config --global user.email 20642596+sakarie9@users.noreply.github.com
+          git commit -m "Update ${{ github.ref_name }}"
+          git push
 
   build:
     uses: ./.github/workflows/build-pkgbuild.yaml
     needs: update
     if: needs.update.outputs.if_updated == 1
     secrets: inherit
-  
-
