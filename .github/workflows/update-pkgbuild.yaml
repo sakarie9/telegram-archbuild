@@ -24,12 +24,12 @@ jobs:
           echo "newver=$newver" >> "$GITHUB_OUTPUT"
 
       - name: Commit and Push Changes
-        if: tg-update.outputs.if_updated == 1
+        if: steps.tg-update.outputs.if_updated == 1
         run: |
           git add -v pkgbuilds
           git config --global user.name Sakari
           git config --global user.email 20642596+sakarie9@users.noreply.github.com
-          git commit -m "Update to ${{ tg-update.outputs.newver }}"
+          git commit -m "Update to ${{ steps.tg-update.outputs.newver }}"
           git push
 
   build:
