@@ -4,6 +4,7 @@ PKGBUILD=pkgbuilds/telegram-desktop-sakari/PKGBUILD
 
 source $PKGBUILD
 
+oldver=${pkgver}
 latest_tag=$(curl -s "https://api.github.com/repos/telegramdesktop/tdesktop/tags" | jq -r '.[0].name')
 newver=${latest_tag/v/}
 
@@ -16,17 +17,19 @@ then
     fi
 
     source $PKGBUILD
-    tg_tar_link=$source[1]
-    wget $tg_tar_link -o tdesktop.tar.gz
-    oldsha=$sha512sums[1]
-    newsha=$(sha512sum tdesktop.tar.gz)
+    tg_tar_link=${source[0]}
+    echo "Telegram Desktop tar link: ${tg_tar_link}!"
+    wget "${tg_tar_link}" -O tdesktop.tar.gz
+    oldsha=${sha512sums[0]}
+    newsha=$(sha512sum tdesktop.tar.gz | cut -d ' ' -f 1)
+    echo "New SHA512: ${newsha}"
     sed -i "s/${oldsha}/${newsha}/" $PKGBUILD
 
-    echo "Updated from ${pkgver} to ${newver}!"
+    echo "Updated from ${oldver} to ${newver}!"
 
     # echo 1 if updated
-    echo 1 >> updated
-    echo ${newver} >> newver
+    echo 1 > updated
+    echo ${newver} > newver
     exit 0
 fi
 echo "No Update!"
