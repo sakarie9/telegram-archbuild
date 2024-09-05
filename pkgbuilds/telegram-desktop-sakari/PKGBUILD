@@ -5,7 +5,7 @@
 # Contributor: hexchain <i@hexchain.org>
 pkgname=telegram-desktop-sakari
 _pkgname=telegram-desktop
-pkgver=5.4.5
+pkgver=5.4.6
 pkgrel=1
 pkgdesc="Official Telegram Desktop client with megumifox & lily's patch"
 arch=('x86_64')
@@ -32,7 +32,7 @@ source=("https://github.com/telegramdesktop/tdesktop/releases/download/v${pkgver
   "warn-before-delete-all-2.patch"
   "0009-Disable-sponsored-messages.patch"
   "0010-Add-option-to-disable-stories.patch")
-sha512sums=('d72a898e3471e3773cc1403e0be469b5b1092159bdf1cf58465a69a71d24abcb324a5bcd917af11314569b2c5fb360b829373fd111c3cb524dd6aac456f0f6f5'
+sha512sums=('54660a8fb7f9ed061211c535dc681335e6673ef2324cd400a10ecb55eede8dc5e2c0001e1974611c0e65412fd7ec2c40d6ac7481b06c5031a5ce1731444b5b9b'
   '1c5ace38926fe8e2c2dfec6b0d9073c77031fc15b60220ffcad626a0f933d6d71d31bdb7e1ccb8bfaa76c1d0338ddd2193a2e75ac1623dd66bbc8e3ee9be4885'
   'a5cc0b821d493333ee71957e71be51fb753bb3c0b97ca44b63ee1f2c93fa5ea2d8dda0560a37cbe55bb9dd17b557ab8e95725cafe32e6bec1989bcd3f42945c6'
   '53f11ce2ca0d26f80ce44ec0c746236b22f27319a7a2a7773a265f6c69f413d2cde0d5f735a40c67674091792c548b426b22981a65cacca2690fc8551a51f18a'
