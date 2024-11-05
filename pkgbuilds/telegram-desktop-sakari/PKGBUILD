@@ -5,7 +5,7 @@
 # Contributor: hexchain <i@hexchain.org>
 pkgname=telegram-desktop-sakari
 _pkgname=telegram-desktop
-pkgver=5.7.1
+pkgver=5.7.2
 pkgrel=1
 pkgdesc="Official Telegram Desktop client with megumifox & lily's patch"
 arch=('x86_64')
@@ -29,17 +29,21 @@ source=("https://github.com/telegramdesktop/tdesktop/releases/download/v${pkgver
   "0002-make-blockquote-markup-less-distractive.patch"
   "0004-make-animated-avatar-follow-power-settings.patch"
   "0009-Disable-sponsored-messages.patch"
-  "0010-Option-to-disable-stories.patch")
-sha512sums=('06c465c6766ba2bb349bb37dd629fa494275cd9c165357ae39bfa7d967f0cce40c587788e88551705923d7bab089fc6a11d3175902c930dca7506a3bfb7d09b5'
-            '1c5ace38926fe8e2c2dfec6b0d9073c77031fc15b60220ffcad626a0f933d6d71d31bdb7e1ccb8bfaa76c1d0338ddd2193a2e75ac1623dd66bbc8e3ee9be4885'
-            'a5cc0b821d493333ee71957e71be51fb753bb3c0b97ca44b63ee1f2c93fa5ea2d8dda0560a37cbe55bb9dd17b557ab8e95725cafe32e6bec1989bcd3f42945c6'
-            '53f11ce2ca0d26f80ce44ec0c746236b22f27319a7a2a7773a265f6c69f413d2cde0d5f735a40c67674091792c548b426b22981a65cacca2690fc8551a51f18a'
-            '9d2e7512734044682a18b79cdda4fd21aa1427c4e066c9288e8218e890744225ff19114a5a129e861a9d382fb5dae0bf19e82e0e9ca862c112ad9a2b54a853d0'
-            '871fd0994bb35dcf32d3d2cbf222db92c30acfd76df06fe87feecbac205f08e3bbed8e48a56c4e11737638fafddc12a1e278519481f77f7dab3f9957ea6e61ed'
-            '23691e85c827d330524feae52cec41c9783ee50263c03b5494b7cc338e8a3a7f357567098c1c992fcce6c34163ee812ca0dfa761e8068e606a10487a950850d9'
-            'f683335508108fdd31b0a9d934d3847d60a1610a2c5a8ea1b64c2b1fb0c88fadd7d0e3ef706c8a5b1cb18180290259515a983c6fb67749cb24efd7296f4ef8ad')
+  "0010-Option-to-disable-stories.patch"
+  $pkgname-28611.patch::https://patch-diff.githubusercontent.com/raw/telegramdesktop/tdesktop/pull/28611.patch)
+sha512sums=('55fa4f20ceae71f2b869c00abdcf6a27f505156f7b254e38a68a97ea34b09e2e9deeef1fec6c5633e93043fb2e9e9ea72502ec9daeed319c8de65cbe825ca916'
+  '1c5ace38926fe8e2c2dfec6b0d9073c77031fc15b60220ffcad626a0f933d6d71d31bdb7e1ccb8bfaa76c1d0338ddd2193a2e75ac1623dd66bbc8e3ee9be4885'
+  'a5cc0b821d493333ee71957e71be51fb753bb3c0b97ca44b63ee1f2c93fa5ea2d8dda0560a37cbe55bb9dd17b557ab8e95725cafe32e6bec1989bcd3f42945c6'
+  '53f11ce2ca0d26f80ce44ec0c746236b22f27319a7a2a7773a265f6c69f413d2cde0d5f735a40c67674091792c548b426b22981a65cacca2690fc8551a51f18a'
+  '9d2e7512734044682a18b79cdda4fd21aa1427c4e066c9288e8218e890744225ff19114a5a129e861a9d382fb5dae0bf19e82e0e9ca862c112ad9a2b54a853d0'
+  '871fd0994bb35dcf32d3d2cbf222db92c30acfd76df06fe87feecbac205f08e3bbed8e48a56c4e11737638fafddc12a1e278519481f77f7dab3f9957ea6e61ed'
+  '23691e85c827d330524feae52cec41c9783ee50263c03b5494b7cc338e8a3a7f357567098c1c992fcce6c34163ee812ca0dfa761e8068e606a10487a950850d9'
+  'f683335508108fdd31b0a9d934d3847d60a1610a2c5a8ea1b64c2b1fb0c88fadd7d0e3ef706c8a5b1cb18180290259515a983c6fb67749cb24efd7296f4ef8ad'
+  '06d186d0638c8c1067d7a64ceefc5570101b40541154eccec2229e18b8d479458ac7f2e763cd12c1ebe49c6960724640baaa7cb4dfa099aafa5c08c27b1d1db0')
 
 prepare() {
+  patch -Np1 -d tdesktop-$pkgver-full -i "$srcdir"/$pkgname-28611.patch
+
   patch -b -l -d tdesktop-$pkgver-full/Telegram/lib_ui -Np1 -i ${srcdir}/no-embolded-font.patch
   patch -b -l -d tdesktop-$pkgver-full/Telegram/lib_ui -Np1 -i ${srcdir}/dont-adjust-fontsize.patch
   patch -b -l -d tdesktop-$pkgver-full/ -Np1 -i ${srcdir}/0001-add-TDESKTOP_DISABLE_REGISTER_CUSTOM_SCHEME-back.patch
