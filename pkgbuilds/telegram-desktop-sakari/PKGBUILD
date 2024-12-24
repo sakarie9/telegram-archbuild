@@ -5,16 +5,24 @@
 # Contributor: hexchain <i@hexchain.org>
 pkgname=telegram-desktop-sakari
 _pkgname=telegram-desktop
+<<<<<<< HEAD
 pkgver=5.8.3
+=======
+pkgver=5.9.1
+>>>>>>> 8153727 (v5.9.1)
 pkgrel=1
 pkgdesc="Official Telegram Desktop client with megumifox & lily's patch"
 arch=('x86_64')
 url="https://desktop.telegram.org/"
 license=('GPL-3.0-only WITH x11vnc-openssl-exception')
-depends=('hunspell' 'ffmpeg' 'hicolor-icon-theme' 'lz4' 'minizip' 'openal'
-  'qt6-imageformats' 'qt6-svg' 'qt6-wayland' 'xxhash' 'ada'
+depends=('hunspell' 'ffmpeg' 'libavfilter.so' 'libavformat.so' 'libavcodec.so' 'libavutil.so' 'hicolor-icon-theme' 'lz4' 'minizip' 'openal'
+  'qt6-base=6.8.1' 'qt6-imageformats' 'qt6-svg' 'qt6-wayland' 'xxhash'
   'rnnoise' 'pipewire' 'libxtst' 'libxrandr' 'libxcomposite' 'libxdamage' 'abseil-cpp' 'libdispatch'
-  'openssl' 'protobuf' 'glib2' 'libsigc++-3.0' 'kcoreaddons' 'openh264')
+  'openssl' 'libcrypto.so' 'libssl.so'
+  'protobuf' 'libprotobuf-lite.so'
+  'libvpx' 'libvpx.so'
+  'glib2' 'libsigc++-3.0' 'libsigc-3.0.so' 'kcoreaddons'
+  'openh264' 'libopenh264.so' 'ada')
 makedepends=('cmake' 'git' 'ninja' 'python' 'range-v3' 'tl-expected' 'microsoft-gsl' 'meson'
   'extra-cmake-modules' 'wayland-protocols' 'plasma-wayland-protocols' 'libtg_owt'
   'glib2-devel' 'gobject-introspection' 'boost' 'fmt' 'mm-common' 'perl-xml-parser' 'python-packaging')
@@ -22,6 +30,7 @@ optdepends=('webkit2gtk: embedded browser features'
   'xdg-desktop-portal: desktop integration')
 provides=('telegram-desktop')
 conflicts=('telegram-desktop')
+options=(!debug)
 source=(
   "https://github.com/telegramdesktop/tdesktop/releases/download/v${pkgver}/tdesktop-${pkgver}-full.tar.gz"
   "no-embolded-font.patch"
@@ -33,7 +42,7 @@ source=(
   "0009-Disable-sponsored-messages.patch"
   "0010-Option-to-disable-stories.patch"
 )
-sha512sums=('272c677544fdca4e2a7e24a5821fb0e99f9caef4388d577c47442351ff1939837163fb2d83a2ec929b92c60197608ed968b5f98b180735218b6cf57cdd501327'
+sha512sums=('266d31b947582e2f6fb8d21d641623e2b529e793744ec53b4ff085dca706a11330a813f862161e5be81484d5e3c8aeb8de7ccf230a4ce78e575c95b31c7ce378'
             '1c5ace38926fe8e2c2dfec6b0d9073c77031fc15b60220ffcad626a0f933d6d71d31bdb7e1ccb8bfaa76c1d0338ddd2193a2e75ac1623dd66bbc8e3ee9be4885'
             'a5cc0b821d493333ee71957e71be51fb753bb3c0b97ca44b63ee1f2c93fa5ea2d8dda0560a37cbe55bb9dd17b557ab8e95725cafe32e6bec1989bcd3f42945c6'
             '53f11ce2ca0d26f80ce44ec0c746236b22f27319a7a2a7773a265f6c69f413d2cde0d5f735a40c67674091792c548b426b22981a65cacca2690fc8551a51f18a'
@@ -57,6 +66,7 @@ prepare() {
 
 build() {
   CXXFLAGS+=' -ffat-lto-objects'
+
   # Turns out we're allowed to use the official API key that telegram uses for their snap builds:
   # https://github.com/telegramdesktop/tdesktop/blob/8fab9167beb2407c1153930ed03a4badd0c2b59f/snap/snapcraft.yaml#L87-L88
   # Thanks @primeos!
