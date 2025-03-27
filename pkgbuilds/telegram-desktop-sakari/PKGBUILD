@@ -5,7 +5,7 @@
 # Contributor: hexchain <i@hexchain.org>
 pkgname=telegram-desktop-sakari
 _pkgname=telegram-desktop
-pkgver=5.13.0
+pkgver=5.13.1
 pkgrel=1
 pkgdesc="Official Telegram Desktop client with megumifox & lily's patch"
 arch=('x86_64')
@@ -39,7 +39,7 @@ source=(
   "0010-Option-to-disable-stories.patch"
 )
 
-sha512sums=('cf19a7fbcb14bd54e1e0ffcabdd5713a6bc4ade7decb6b4b9a47cb6f2df69958e7c94b5cb5eb27f9e20fd3fb52edab1bc2ee865d83288505e15d7a5dae933b22'
+sha512sums=('6d15ad0641e0e47e4d48869885c63e6d1ddbfb5461c121cf33ac77d231a6fc77a6eb5333ad7b76d3aa2e1111d9a5f58846fae83cd36886838d6791dbfaa65929'
   '1c5ace38926fe8e2c2dfec6b0d9073c77031fc15b60220ffcad626a0f933d6d71d31bdb7e1ccb8bfaa76c1d0338ddd2193a2e75ac1623dd66bbc8e3ee9be4885'
   'a5cc0b821d493333ee71957e71be51fb753bb3c0b97ca44b63ee1f2c93fa5ea2d8dda0560a37cbe55bb9dd17b557ab8e95725cafe32e6bec1989bcd3f42945c6'
   '35660ffbb5061835fceab2e7ab613b60ab26533e8a03bcd951da2e046e2d13c227138628fea6ff04655b04605576f9f36b5fea9b10012c7cefe03126afaab6fe'
