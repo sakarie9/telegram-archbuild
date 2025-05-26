@@ -5,33 +5,70 @@
 # Contributor: hexchain <i@hexchain.org>
 pkgname=telegram-desktop-sakari
 _pkgname=telegram-desktop
-pkgver=5.13.1
-pkgrel=5
+pkgver=5.14.3
+pkgrel=1
 pkgdesc="Official Telegram Desktop client with megumifox & lily's patch"
 arch=('x86_64')
 url="https://desktop.telegram.org/"
-license=('GPL-3.0-only WITH x11vnc-openssl-exception')
-depends=('hunspell' 'ffmpeg' 'libavfilter.so' 'libavformat.so' 'libavcodec.so' 'libavutil.so' 'hicolor-icon-theme' 'lz4' 'minizip' 'openal'
-  'qt6-base=6.9.0' 'qt6-imageformats' 'qt6-svg' 'qt6-wayland' 'xxhash' 'ada'
-  'rnnoise' 'pipewire' 'libxtst' 'libxrandr' 'libxcomposite' 'libxdamage' 'abseil-cpp' 'libdispatch'
-  'openssl' 'libcrypto.so' 'libssl.so'
-  'protobuf' 'libprotobuf-lite.so'
+license=('GPL-3.0-or-later WITH OpenSSL-exception')
+depends=(
+  'abseil-cpp'
+  'ada'
+  'ffmpeg' 'libavfilter.so' 'libavformat.so' 'libavcodec.so' 'libavutil.so'
+  'glib2'
+  'hicolor-icon-theme'
+  'hunspell'
+  'kcoreaddons'
+  'libdispatch'
+  'libxcomposite'
+  'libxdamage'
+  'libxrandr'
+  'libxtst'
   'libvpx' 'libvpx.so'
-  'glib2' 'kcoreaddons' 'openh264' 'libopenh264.so')
-makedepends=('cmake' 'ninja' 'python' 'range-v3' 'tl-expected' 'microsoft-gsl'
-  'libtg_owt' 'gobject-introspection' 'boost' 'glib2-devel')
-optdepends=('geoclue: geoinformation support'
-  'geocode-glib: geocoding support'
+  'lz4'
+  'minizip'
+  'openal'
+  'openh264' 'libopenh264.so'
+  'openssl' 'libcrypto.so' 'libssl.so'
+  'pipewire'
+  'protobuf' 'libprotobuf-lite.so'
+  'qt6-base=6.9.0'
+  'qt6-imageformats'
+  'qt6-svg'
+  'qt6-wayland'
+  'rnnoise'
+  'xxhash'
+)
+makedepends=(
+  'boost'
+  'cmake'
+  'git'
+  'glib2-devel'
+  'gobject-introspection'
+  'gperf'
+  'libtg_owt'
+  'microsoft-gsl'
+  'ninja'
+  'python'
+  'range-v3'
+  'tl-expected'
+)
+optdepends=(
+  'geoclue: geoinformation support'
   'geocode-glib-2: geocoding support'
-  'webkit2gtk: embedded browser features provided by webkit2gtk'
+  'geocode-glib: geocoding support'
   'webkit2gtk-4.1: embedded browser features provided by webkit2gtk-4.1'
+  'webkit2gtk: embedded browser features provided by webkit2gtk'
   'webkitgtk-6.0: embedded browser features provided by webkitgtk-6.0 (Wayland only)'
-  'xdg-desktop-portal: desktop integration')
+  'xdg-desktop-portal: desktop integration'
+)
 provides=('telegram-desktop')
 conflicts=('telegram-desktop')
 options=(!debug)
+_td_commit=51743dfd01dff6179e2d8f7095729caa4e2222e9
 source=(
   "https://github.com/telegramdesktop/tdesktop/releases/download/v${pkgver}/tdesktop-${pkgver}-full.tar.gz"
+  "git+https://github.com/tdlib/td.git#tag=${_td_commit}"
   "no-embolded-font.patch"
   "dont-adjust-fontsize.patch"
   "0001-add-TDESKTOP_DISABLE_REGISTER_CUSTOM_SCHEME-back.patch"
@@ -42,15 +79,16 @@ source=(
   "0010-Option-to-disable-stories.patch"
 )
 
-sha512sums=('6d15ad0641e0e47e4d48869885c63e6d1ddbfb5461c121cf33ac77d231a6fc77a6eb5333ad7b76d3aa2e1111d9a5f58846fae83cd36886838d6791dbfaa65929'
-  '1c5ace38926fe8e2c2dfec6b0d9073c77031fc15b60220ffcad626a0f933d6d71d31bdb7e1ccb8bfaa76c1d0338ddd2193a2e75ac1623dd66bbc8e3ee9be4885'
-  'a5cc0b821d493333ee71957e71be51fb753bb3c0b97ca44b63ee1f2c93fa5ea2d8dda0560a37cbe55bb9dd17b557ab8e95725cafe32e6bec1989bcd3f42945c6'
-  '35660ffbb5061835fceab2e7ab613b60ab26533e8a03bcd951da2e046e2d13c227138628fea6ff04655b04605576f9f36b5fea9b10012c7cefe03126afaab6fe'
-  '653945cb6e6425fb4631b4c98f47d4769b069e205be822156a8c455dbddd65f6ff38b57f279350a1891a16c53d2623564803274a8700fc4573b4ba3810979766'
-  '9d2e7512734044682a18b79cdda4fd21aa1427c4e066c9288e8218e890744225ff19114a5a129e861a9d382fb5dae0bf19e82e0e9ca862c112ad9a2b54a853d0'
-  '871fd0994bb35dcf32d3d2cbf222db92c30acfd76df06fe87feecbac205f08e3bbed8e48a56c4e11737638fafddc12a1e278519481f77f7dab3f9957ea6e61ed'
-  '23691e85c827d330524feae52cec41c9783ee50263c03b5494b7cc338e8a3a7f357567098c1c992fcce6c34163ee812ca0dfa761e8068e606a10487a950850d9'
-  'f683335508108fdd31b0a9d934d3847d60a1610a2c5a8ea1b64c2b1fb0c88fadd7d0e3ef706c8a5b1cb18180290259515a983c6fb67749cb24efd7296f4ef8ad')
+sha512sums=('1c8d6f3f858789c716bdaef8ef00896aac07ef8e6792489b80bf162b40db80dc2cf1831335269c4bc12e11c1b6326cbf8ffd40fc9d847c13196f540e15a1978d'
+            'd622b8f3580ee49415546d025c4ba45f5b2de50b315fc379dc57c0427c5f815c7cc3820cca937c12182ee461641bb61f87ebc99b6c74a1a666cea9a08f0f41a0'
+            '1c5ace38926fe8e2c2dfec6b0d9073c77031fc15b60220ffcad626a0f933d6d71d31bdb7e1ccb8bfaa76c1d0338ddd2193a2e75ac1623dd66bbc8e3ee9be4885'
+            'a5cc0b821d493333ee71957e71be51fb753bb3c0b97ca44b63ee1f2c93fa5ea2d8dda0560a37cbe55bb9dd17b557ab8e95725cafe32e6bec1989bcd3f42945c6'
+            '35660ffbb5061835fceab2e7ab613b60ab26533e8a03bcd951da2e046e2d13c227138628fea6ff04655b04605576f9f36b5fea9b10012c7cefe03126afaab6fe'
+            '653945cb6e6425fb4631b4c98f47d4769b069e205be822156a8c455dbddd65f6ff38b57f279350a1891a16c53d2623564803274a8700fc4573b4ba3810979766'
+            '9d2e7512734044682a18b79cdda4fd21aa1427c4e066c9288e8218e890744225ff19114a5a129e861a9d382fb5dae0bf19e82e0e9ca862c112ad9a2b54a853d0'
+            '871fd0994bb35dcf32d3d2cbf222db92c30acfd76df06fe87feecbac205f08e3bbed8e48a56c4e11737638fafddc12a1e278519481f77f7dab3f9957ea6e61ed'
+            '23691e85c827d330524feae52cec41c9783ee50263c03b5494b7cc338e8a3a7f357567098c1c992fcce6c34163ee812ca0dfa761e8068e606a10487a950850d9'
+            'f683335508108fdd31b0a9d934d3847d60a1610a2c5a8ea1b64c2b1fb0c88fadd7d0e3ef706c8a5b1cb18180290259515a983c6fb67749cb24efd7296f4ef8ad')
 
 prepare() {
   patch -b -l -d tdesktop-$pkgver-full/Telegram/lib_ui -Np1 -i ${srcdir}/no-embolded-font.patch
@@ -70,12 +108,21 @@ prepare() {
 build() {
   CXXFLAGS+=' -ffat-lto-objects'
 
+  cmake -S td -B td/build \
+    -DCMAKE_BUILD_TYPE=None \
+    -DCMAKE_INSTALL_PREFIX="$PWD/td/install" \
+    -Wno-dev \
+    -DTD_E2E_ONLY=ON
+  cmake --build td/build
+  cmake --install td/build
+
   # Turns out we're allowed to use the official API key that telegram uses for their snap builds:
   # https://github.com/telegramdesktop/tdesktop/blob/8fab9167beb2407c1153930ed03a4badd0c2b59f/snap/snapcraft.yaml#L87-L88
   # Thanks @primeos!
   cmake -B build -S tdesktop-$pkgver-full -G Ninja \
     -DCMAKE_VERBOSE_MAKEFILE=ON \
     -DCMAKE_INSTALL_PREFIX="/usr" \
+    -Dtde2e_DIR="$PWD/td/install/lib/cmake/tde2e" \
     -DCMAKE_BUILD_TYPE=Release \
     -DTDESKTOP_API_ID=611335 \
     -DTDESKTOP_API_HASH=d524b414d21f4d37f08684c1df41ac9c \
