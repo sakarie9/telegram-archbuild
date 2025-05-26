@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - 'pkgbuilds/**'
+      - "pkgbuilds/**"
   workflow_dispatch:
   workflow_call:
 
@@ -30,7 +30,7 @@ jobs:
         run: echo "pkgver=$(grep -Po 'pkgver=\K[^ ]+' pkgbuilds/telegram-desktop-sakari/PKGBUILD)" >> "$GITHUB_OUTPUT"
 
       - name: Download releases
-        uses: robinraju/release-downloader@v1.9
+        uses: robinraju/release-downloader@v1
         continue-on-error: true
         with:
           tag: "repo"
