@@ -39,6 +39,7 @@ depends=(
   'rnnoise'
   'xxhash'
   'libavif'
+  'libheif'
 )
 makedepends=(
   'boost'
