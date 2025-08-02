@@ -1,5 +1,7 @@
 # Telegram Builds with Patches for Arch Linux
 
+[tdesktop](https://github.com/telegramdesktop/tdesktop/releases)
+
 Patch lists can be found here: [patches](pkgbuilds/telegram-desktop-sakari)
 
 Pkgbuilds from [archlinuxcn](https://github.com/archlinuxcn/repo/tree/master/archlinuxcn/telegram-desktop-lily)
