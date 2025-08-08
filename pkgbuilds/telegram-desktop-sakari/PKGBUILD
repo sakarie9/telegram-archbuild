@@ -6,7 +6,7 @@
 pkgname=telegram-desktop-sakari
 _pkgname=telegram-desktop
 pkgver=6.0.2
-pkgrel=1
+pkgrel=2
 pkgdesc="Official Telegram Desktop client with megumifox & lily's patch"
 arch=('x86_64')
 url="https://desktop.telegram.org/"
@@ -54,6 +54,7 @@ makedepends=(
   'python'
   'range-v3'
   'tl-expected'
+  'mold'
 )
 optdepends=(
   'geoclue: geoinformation support'
@@ -108,6 +109,11 @@ prepare() {
 }
 
 build() {
+  # mold
+  export CFLAGS+=" -fuse-ld=mold"
+  export CXXFLAGS+=" -ffat-lto-objects -fuse-ld=mold"
+  export LDFLAGS+=" -fuse-ld=mold"
+
   CXXFLAGS+=' -ffat-lto-objects'
 
   cmake -S td -B td/build \
