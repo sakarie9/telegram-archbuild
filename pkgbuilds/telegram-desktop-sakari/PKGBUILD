@@ -32,7 +32,7 @@ depends=(
   'openssl' 'libcrypto.so' 'libssl.so'
   'pipewire'
   'protobuf' 'libprotobuf-lite.so'
-  'qt6-base=6.9.1'
+  'qt6-base=6.9.2'
   'qt6-imageformats'
   'qt6-svg'
   'qt6-wayland'
