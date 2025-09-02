@@ -47,7 +47,7 @@ jobs:
             ccache
           key: ccache
 
-      - name: Restore ccache
+      - name: Restore build cache
         id: cache-build-restore
         uses: actions/cache@v4
         with:
