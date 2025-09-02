@@ -45,8 +45,15 @@ jobs:
         with:
           path: |
             ccache
+          key: ccache
+
+      - name: Restore ccache
+        id: cache-build-restore
+        uses: actions/cache@v4
+        with:
+          path: |
             pkgbuilds/telegram-desktop-sakari/src/build
-          key: ccache-v${{ steps.tg-version.outputs.pkgver }}
+          key: build-v${{ steps.tg-version.outputs.pkgver }}
 
       - name: Build packages
         uses: sakarie9/arch-repo-builder@main
