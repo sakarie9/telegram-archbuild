@@ -69,7 +69,6 @@ _td_commit=6d74326c5ce53aeb52496f157f0080d9b8515970
 source=(
   "https://github.com/telegramdesktop/tdesktop/releases/download/v${pkgver}/tdesktop-${pkgver}-full.tar.gz"
   "git+https://github.com/tdlib/td.git#tag=${_td_commit}"
-  "no-embolded-font.patch"
   "dont-adjust-fontsize.patch"
   "0001-add-TDESKTOP_DISABLE_REGISTER_CUSTOM_SCHEME-back.patch"
   "0002-make-blockquote-markup-less-distractive.patch"
@@ -80,18 +79,16 @@ source=(
 )
 
 sha512sums=('1a737be0c682c0f277cd13f6aae36e7367045c03da76df83de93c5ae0f9956763aad21f90494eaf9412700c0fbdbaec7bd5e8aebfcdf25408c914ef766825a28'
-            '6dc6e684a0bf35bb83f6fa6579a0da82d604190b222f2cd2de9b8ef5b93f5f18ac9a8733e2c5cf2a64ed9933b346ea31e26a4bcc0039956280ec2deef9649457'
-            '1c5ace38926fe8e2c2dfec6b0d9073c77031fc15b60220ffcad626a0f933d6d71d31bdb7e1ccb8bfaa76c1d0338ddd2193a2e75ac1623dd66bbc8e3ee9be4885'
-            'a5cc0b821d493333ee71957e71be51fb753bb3c0b97ca44b63ee1f2c93fa5ea2d8dda0560a37cbe55bb9dd17b557ab8e95725cafe32e6bec1989bcd3f42945c6'
-            'bb0e706b7a2629ba6fae9b7c71cb5a3f292e568f8c8d845aeb2584835c849b232ff9b7886ec931e446d077f249e2587abc70868659a5d08f7d94dc431fa3f914'
-            'f315cbe729c568c27c745e12c3061d4757b1a146db108afb184bc55c55e7aaa317408e7f609111a3f3e79aab3af320204dc6e63aa35221aad99228ee6fdf2454'
-            '57182ca0ae0aba5bc7fbc474329d13062d9ec0c4cab0911abe13d19beaac73a4cafbe23f995c669596d6e6b9bbf2785da740450cfb8a62295a629dc843812b2c'
-            '131eff0887513137be97f4ca04aa258f0a59df45e7bd1eb7ee6736c1e366ff887ada196f069ef8ddce1d4477189d531b24d5235cbefe0407ba42d164bbbed09f'
-            '23691e85c827d330524feae52cec41c9783ee50263c03b5494b7cc338e8a3a7f357567098c1c992fcce6c34163ee812ca0dfa761e8068e606a10487a950850d9'
-            '80f87a826b3e427c92cefaf79c4f4df1432330d53f06b3faebb592d585ec839bb45d12d54fec96be2c3a303c7a8b4f686ed78fa1c6c25b60234cc747e2aceb7a')
+  '6dc6e684a0bf35bb83f6fa6579a0da82d604190b222f2cd2de9b8ef5b93f5f18ac9a8733e2c5cf2a64ed9933b346ea31e26a4bcc0039956280ec2deef9649457'
+  'a5cc0b821d493333ee71957e71be51fb753bb3c0b97ca44b63ee1f2c93fa5ea2d8dda0560a37cbe55bb9dd17b557ab8e95725cafe32e6bec1989bcd3f42945c6'
+  'bb0e706b7a2629ba6fae9b7c71cb5a3f292e568f8c8d845aeb2584835c849b232ff9b7886ec931e446d077f249e2587abc70868659a5d08f7d94dc431fa3f914'
+  'f315cbe729c568c27c745e12c3061d4757b1a146db108afb184bc55c55e7aaa317408e7f609111a3f3e79aab3af320204dc6e63aa35221aad99228ee6fdf2454'
+  '57182ca0ae0aba5bc7fbc474329d13062d9ec0c4cab0911abe13d19beaac73a4cafbe23f995c669596d6e6b9bbf2785da740450cfb8a62295a629dc843812b2c'
+  '131eff0887513137be97f4ca04aa258f0a59df45e7bd1eb7ee6736c1e366ff887ada196f069ef8ddce1d4477189d531b24d5235cbefe0407ba42d164bbbed09f'
+  '23691e85c827d330524feae52cec41c9783ee50263c03b5494b7cc338e8a3a7f357567098c1c992fcce6c34163ee812ca0dfa761e8068e606a10487a950850d9'
+  '80f87a826b3e427c92cefaf79c4f4df1432330d53f06b3faebb592d585ec839bb45d12d54fec96be2c3a303c7a8b4f686ed78fa1c6c25b60234cc747e2aceb7a')
 
 prepare() {
-  patch -b -l -d tdesktop-$pkgver-full/Telegram/lib_ui -Np1 -i ${srcdir}/no-embolded-font.patch
   patch -b -l -d tdesktop-$pkgver-full/Telegram/lib_ui -Np1 -i ${srcdir}/dont-adjust-fontsize.patch
   patch -b -l -d tdesktop-$pkgver-full/ -Np1 -i ${srcdir}/0001-add-TDESKTOP_DISABLE_REGISTER_CUSTOM_SCHEME-back.patch
   patch -b -l -d tdesktop-$pkgver-full/ -Np1 -i ${srcdir}/0002-make-blockquote-markup-less-distractive.patch
